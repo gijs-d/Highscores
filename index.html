@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highscores</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <main id="Home" class="visible">
+        <input type="button" value="Planning" class="navBtn">
+        <ul id="today"></ul>
+        <input type="button" value="History" class="navBtn">
+        <table id="scores">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Set</th>
+                    <th>Day</th>
+                    <th>Today</th>
+                </tr>
+            </thead>
+            <tbody> </tbody>
+        </table>
+        <input type="button" value="Try" class="navBtn">
+        <input type="button" value="Help" class="navBtn" id="helpBtn">
+    </main>
+    <main id="Planning">
+        <h1>Planning</h1>
+        <input type="button" value="Back" class="navBtn">
+        <table>
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Sports</th>
+                </tr>
+            </thead>
+            <tbody> </tbody>
+        </table>
+        <input type="button" value="Change" id="changeBtn" class="changePlanning active">
+        <form id="changePlanning" class="changePlanning">
+            <label for="changeDay">Change day</label>
+            <select id="changeDay" name="changeDay"></select>
+            <div id="changePlanningCheckboxes" class="changePlaning2"></div>
+            <input type="button" value="Cancel" class="cancel">
+            <input class="changePlaning2" type="submit" value="Save">
+        </form>
+    </main>
+    <main id="History">
+        <h1>History</h1>
+        <input type="button" value="Back" class="navBtn">
+        <select id="chartSport"></select>
+        <div id="chart"></div>
+    </main>
+    <main id="Try">
+        <h1>Try</h1>
+        <input type="button" value="Back" class="navBtn">
+        <form>
+            <label for="sport">Sport</label>
+            <select id="sport" name="sport" value=""></select>
+            <label for="set">Set</label>
+            <input type="number" id="set" name="set" min="1" required>
+            <input type="submit" value="Add">
+        </form>
+    </main>
+    <main id="Help">
+        <h1>Help</h1>
+        <input type="button" value="Back" class="navBtn">
+        <form>
+            <p id="last"></p>
+            <input type="button" value="Delete Last" id="deleteLast">
+        </form>
+        <form>
+            <input type="button" value="Add Sport" id="addSport" class="subForm button active">
+            <div class="addSport form subForm">
+                <input type="text" placeholder="sport" id="">
+                <input type="reset" class="reset" value="Cancel">
+                <input type="button" class="add" value="Add">
+            </div>
+            <input type="button" value="Delete Sport" id="delSport" class="subForm button active">
+            <div class="delSport form subForm">
+                <select id=""></select>
+                <input type="reset" class="reset" value="Cancel">
+                <input type="button" class="delete" value="Delete">
+            </div>
+        </form>
+        <form id="settings">
+            <label for="grow">Grow %</label>
+            <input type="number" name="grow" id="grow">
+            <input type="submit" value="Save">
+        </form>
+    </main>
+    <script src="assets/js/lwc.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

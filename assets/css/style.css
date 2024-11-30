@@ -1,0 +1,315 @@
+:root {
+    --button-color1: rgba(47, 143, 23, 0.9);
+    --button-color2: rgba(255, 255, 255, 0.3);
+    --button-hover-color1: rgba(47, 143, 23, 0.5);
+    --button-hover-color2: rgba(255, 255, 255, 0.15);
+    --button-hover-shadow1: 0 0 10px rgba(47, 143, 23, 0.9);
+    --button-hover-shadow2: 0 0 15px rgba(255, 255, 255, 0.5);
+    --button-shadow1: 0 0 10px rgba(47, 143, 23, 0.6);
+    --button-shadow2: 0 0 5px rgba(255, 255, 255, 0.5);
+    --button-text1: #e1ff00;
+    --button-text1: #e1ff00;
+    --text1: #e1ff00;
+    --text2: #eff7a8;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    min-height: 100%;
+    padding: 0;
+    width: 100%;
+}
+
+html {
+    font-size: 16px;
+}
+
+body,
+body * {
+    font-size: 1rem;
+}
+
+body {
+    background: linear-gradient(to bottom right, #222222, rgba(37, 71, 77, 0.5));
+    color: var(--text2);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    box-sizing: border-box;
+    display: none;
+    min-height: 100%;
+    padding: 5px;
+    width: 100%;
+    /* merged */
+    height: 100%;
+    overflow-y: auto;
+}
+
+main.visible {
+    display: block;
+}
+
+h1 {
+    color: var(--text2);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+ul {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: #222222 5px 5px 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 15px;
+    width: 70%;
+}
+
+form input,
+form label,
+form select {
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: block;
+    flex-grow: 1;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    min-width: 110px;
+    width: 100%;
+    width: 50%;
+}
+
+form input[type='button'],
+form input[type='reset'],
+form input[type='submit'] {
+    height: unset;
+    line-height: unset;
+    margin-top: 20px;
+    width: 90%;
+}
+
+form #changePlanningCheckboxes {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+form div.form {
+    box-shadow: #222222 5px 5px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 10px;
+    width: 90%;
+}
+
+form h2 {
+    text-align: center;
+    width: 100%;
+}
+
+form input[type='checkbox'] {
+    float: right;
+    height: 20px;
+    min-width: 20px !important;
+    width: 20px !important;
+}
+
+form label {
+    margin-top: 10px;
+    text-align: center;
+}
+
+form label.checkbox {
+    flex-grow: 1;
+    min-width: 110px;
+}
+
+form label::after {
+    content: ':';
+}
+
+form label.checkbox::after {
+    content: '';
+}
+
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+    background-color: var(--button-color2);
+    border: none;
+    border-radius: 20px;
+    box-shadow: var(--button-shadow2);
+    color: var(--button-text1);
+    display: block;
+    margin: 10px auto;
+    padding: 10px 25px;
+}
+
+input[type='button'].navBtn {
+    background-color: var(--button-color1);
+    box-shadow: var(--button-shadow1);
+}
+
+input[type='button']:hover,
+input[type='reset']:hover,
+input[type='submit']:hover {
+    background-color: var(--button-hover-color2);
+    box-shadow: var(--button-hover-shadow2);
+}
+
+input[type='button'].navBtn:hover {
+    background-color: var(--button-hover-color1);
+    box-shadow: var(--button-hover-shadow1);
+}
+
+table {
+    color: var(--text2);
+    margin: 0 auto;
+    width: 70%;
+}
+
+table td,
+table th {
+    padding: 10px;
+    text-align: center;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.changePlaning2 {
+    display: none !important;
+}
+
+.changePlaning2.active {
+    display: flex !important;
+}
+
+.subForm {
+    display: none !important;
+}
+
+.subForm.active {
+    display: flex !important;
+}
+
+#chart {
+    display: flex;
+    justify-content: center;
+}
+
+#chartSport {
+    border-radius: 5px;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    margin: 0 auto;
+}
+
+#Help form {
+    margin-top: 15px;
+}
+
+#helpBtn {
+    margin-top: 50px;
+}
+
+#last {
+    text-align: center;
+    width: 100%;
+}
+
+#Planning .changePlanning {
+    display: none;
+    margin-top: 15px;
+}
+
+#Planning .changePlanning.active {
+    display: flex;
+}
+
+#today {
+    margin: 20px auto;
+    width: 70%;
+}
+
+#today li {
+    border-radius: 15px;
+    box-shadow: #222222 5px 5px 15px;
+    box-sizing: border-box;
+    color: var(--text1);
+    list-style: none;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+#today li .loadbar {
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px black;
+    display: flex;
+    height: 30px;
+    justify-content: center;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    width: 90%;
+}
+
+#today li .loadbar .count {
+    color: black;
+    font-weight: 600;
+    z-index: 3;
+}
+
+#today li .loadbar .loader {
+    background-color: rgba(0, 255, 0, 0.8);
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.4);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 70%;
+}
+
+#today li h2 {
+    font-size: 1.3125rem;
+    margin: 0;
+    text-align: center;
+}
+
+#today li h3 {
+    margin: 5px;
+}
+
+#today li.completed {
+    background-color: rgba(173, 255, 47, 0.2);
+}
+
+@media screen and (max-width: 375px) {
+    form {
+        width: 90%;
+    }
+
+    #today, #scores {
+        width: 90%;
+    }
+}
