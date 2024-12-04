@@ -1,4 +1,4 @@
-const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 let data = {
     grow: 10,
     today: undefined,
@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
     loadData();
+    resetScoresForNewDay();
     printSportsToday();
     printPlanning();
     printScores();
@@ -133,7 +134,7 @@ function toggleSubForm(e) {
 }
 
 function loadData() {
-    let savedData = localStorage.getItem('sportData');
+    const savedData = localStorage.getItem('sportData');
     if (savedData) {
         data = JSON.parse(savedData);
     }
@@ -152,7 +153,7 @@ function changeSettings(e) {
     changePage({ target: { value: 'Home' } });
 }
 
-function recountScores(print = false) {
+function recountScores() {
     const newScores = Object.fromEntries(Object.keys(data.scores).map(sport => [sport, [0, 0, 0]]));
     const emptyDailyScores = Object.fromEntries(Object.keys(data.scores).map(sport => [sport, 0]));
     let dailyScores = { ...emptyDailyScores };
@@ -213,7 +214,7 @@ function fillFormItems() {
         '<option   disabled selected hidden>Select sport</option>' + sportOptions;
     document.querySelector('#changeDay').innerHTML =
         '<option  disabled selected hidden>Chose day</option>' +
-        days.map(day => `<option value="${day}">${day}</option>`).join('');
+        dayNames.map(day => `<option value="${day}">${day}</option>`).join('');
     document.querySelector('#changePlanningCheckboxes').innerHTML = Object.keys(data.scores)
         .map(
             sport => `
@@ -389,10 +390,9 @@ function printSportsToday() {
 }
 
 function makeSportsToday(today) {
-    const day = days[(new Date(today).getDay() + 6) % 7];
-    console.log(day);
+    const dayName = dayNames[(new Date(today).getDay() + 6) % 7];
     data.sportsToday = Object.fromEntries(
-        data.planning[day].map(sport => {
+        data.planning[dayName].map(sport => {
             const oldScore = [...data.scores[sport]];
             let setDone = 0;
             if (oldScore[2]) {
@@ -411,8 +411,8 @@ function makeSportsToday(today) {
                 oldScore[1] = Math.max(...Object.values(oldScore[1]), 0);
             }
             const grow = [
-                Math.ceil(oldScore[0] * (data.grow / 100)) || 1,
-                Math.ceil(oldScore[1] * (data.grow / 100)) || 1,
+                Math.ceil(oldScore[0] * (data.grow / 100)) || data.grow > 0 ? 1 : 0,
+                Math.ceil(oldScore[1] * (data.grow / 100)) || data.grow > 0 ? 1 : 0,
             ];
             return [
                 sport,
@@ -434,7 +434,7 @@ function printScores() {
 }
 
 function printPlanning() {
-    document.querySelector('#Planning table tbody').innerHTML = days
+    document.querySelector('#Planning table tbody').innerHTML = dayNames
         .map(day => `<tr><td>${day}</td><td>${data.planning[day].join(', ')}</td></tr>`)
         .join('');
 }
