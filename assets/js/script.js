@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', init);
 function init() {
     loadData();
     resetScoresForNewDay();
+    makeSportsToday();
     printSportsToday();
     printPlanning();
     printScores();
@@ -111,7 +112,7 @@ function deleteSport(e) {
     Object.keys(data.planning).forEach(day => {
         data.planning[day] = data.planning[day].filter(daySport => daySport != sport);
     });
-    makeSportsToday(data.today);
+    makeSportsToday();
     saveData();
     subForm.classList.remove('active');
     document.querySelector('#delSport').classList.add('active');
@@ -147,7 +148,7 @@ function saveData() {
 function changeSettings(e) {
     e.preventDefault();
     data.grow = e.target.grow.value;
-    makeSportsToday(data.today);
+    makeSportsToday();
     saveData();
     printSportsToday();
     changePage({ target: { value: 'Home' } });
@@ -185,7 +186,7 @@ function recountScores() {
         Object.keys(dailyScores).forEach(k => (newScores[k][2] = dailyScores[k]));
     }
     data.scores = newScores;
-    makeSportsToday(data.today);
+    makeSportsToday();
     saveData();
     printSportsToday();
     printScores();
@@ -271,7 +272,7 @@ function submitPlanning(e) {
     data.planning[newData[0][1]] = newData.filter(d => d[1] == 'on').map(d => d[0]);
     saveData();
     printPlanning();
-    makeSportsToday(data.today);
+    makeSportsToday();
     printSportsToday();
     cancelChangePlanning(e);
 }
@@ -342,6 +343,7 @@ function resetScoresForNewDay() {
     data.today = today;
     Object.keys(data.scores).forEach(sport => (data.scores[sport][2] = 0));
     saveData();
+    makeSportsToday();
     printSportsToday();
     printScores();
 }
@@ -356,13 +358,10 @@ function changePage(e) {
 }
 
 function printSportsToday() {
-    const today = getCurrentDay();
-    if (data.today != today) {
-        makeSportsToday(today);
-    }
     document.querySelector('#today').innerHTML = Object.entries(data.sportsToday)
         .map(
-            ([k, v]) => `
+            ([k, v]) =>
+                `
         <li class="${v.set.done >= v.set.total && v.day.done >= v.day.total ? 'completed' : ''}">
             <h2>${k}</h2>
             <div>
@@ -383,14 +382,13 @@ function printSportsToday() {
                     )}%"></div>
                 </div>
             </div>
-        </li>
-        `
+        </li>`
         )
         .join('');
 }
 
-function makeSportsToday(today) {
-    const dayName = dayNames[(new Date(today).getDay() + 6) % 7];
+function makeSportsToday() {
+    const dayName = dayNames[(new Date(data.today).getDay() + 6) % 7];
     data.sportsToday = Object.fromEntries(
         data.planning[dayName].map(sport => {
             const oldScore = [...data.scores[sport]];
@@ -423,7 +421,7 @@ function makeSportsToday(today) {
             ];
         })
     );
-    data.today = today;
+
     saveData();
 }
 
