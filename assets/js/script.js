@@ -128,7 +128,6 @@ function toggleSubForm(e) {
         document.querySelector('.' + e.target.id).classList.add('active');
     } else {
         const elem = e.target.closest('.form');
-        console.log(elem);
         elem.classList.remove('active');
         document.querySelector('#' + elem.classList[0]).classList.add('active');
     }
@@ -395,17 +394,16 @@ function makeSportsToday() {
             let setDone = 0;
             if (oldScore[2]) {
                 setDone = data.history
-                    .filter(history => history.sport == sport && history.day == today)
+                    .filter(history => history.sport == sport && history.day == data.today)
                     .reduce((acc, history) => Math.max(acc, history.set), 0);
                 const passed = data.history.filter(
-                    history => history.sport == sport && history.day != today
+                    history => history.sport == sport && history.day != data.today
                 );
                 oldScore[0] = passed.reduce((acc, { set }) => Math.max(acc, set), 0);
                 oldScore[1] = passed.reduce((acc, { day, set }) => {
                     acc[day] = (acc[day] || 0) + set;
                     return acc;
                 }, {});
-                console.log(oldScore[1]);
                 oldScore[1] = Math.max(...Object.values(oldScore[1]), 0);
             }
             const grow = [
@@ -432,7 +430,13 @@ function printScores() {
 }
 
 function printPlanning() {
+    const dayName = dayNames[(new Date(data.today).getDay() + 6) % 7];
     document.querySelector('#Planning table tbody').innerHTML = dayNames
-        .map(day => `<tr><td>${day}</td><td>${data.planning[day].join(', ')}</td></tr>`)
+        .map(
+            day =>
+                `<tr class="${
+                    dayName == day ? 'currentDay' : ''
+                }"><td>${day}</td><td>${data.planning[day].join(', ')}</td></tr>`
+        )
         .join('');
 }

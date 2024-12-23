@@ -11,6 +11,7 @@
     --button-text1: #e1ff00;
     --text1: #e1ff00;
     --text2: #eff7a8;
+    --current-day-row: rgba(47, 143, 23, 0.4);
 }
 
 html,
@@ -235,6 +236,10 @@ table tbody tr:nth-child(odd) {
     width: 100%;
 }
 
+#Planning table tr.currentDay {
+    background-color: var(--current-day-row);
+}
+
 #Planning .changePlanning {
     display: none;
     margin-top: 15px;
@@ -309,7 +314,8 @@ table tbody tr:nth-child(odd) {
         width: 90%;
     }
 
-    #today, #scores {
+    #today,
+    #scores {
         width: 90%;
     }
 }
