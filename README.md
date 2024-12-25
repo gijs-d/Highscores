@@ -16,6 +16,10 @@ This project is a web application designed to manage and display high scores for
 
 ## Installation
 
+You can view the live demo on [GitHub Pages](https://gijs-d.github.io/Highscores/).
+
+To run the Highscores App locally, follow these steps:
+
 1. Clone the repository:
 
     ```bash
